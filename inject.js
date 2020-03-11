@@ -1,29 +1,32 @@
-let mouseX = 0;
-let mouseY = 0;
+let removePanel = () => {
+
+    document.querySelector("div.qpt-panel").remove();
+
+    document.removeEventListener("click", removePanel);
+    document.addEventListener("click", translate);
+};
 
 
-document.addEventListener("click", event => {
+let translate = (clickEvent) => {
+
+
+    let showPanel = (responseText) => {
+
+        let panel = document.createElement("div");
+        panel.setAttribute("class", "qpt-panel");
+        panel.setAttribute("style", `top:${clickEvent.pageY}px;left:${clickEvent.pageX}px;`);
+        panel.innerHTML = responseText;
+
+        document.firstElementChild.appendChild(panel);
+    };
+
+
 
     let text = document.getSelection().toString();
 
     if (text === "") {
         return;
     }
-
-    console.log(event);
-
-    mouseX = event.pageX;
-    mouseY = event.pageY;
-
-    translate(text);
-
-});
-
-
-
-function translate(text) {
-
-    console.log("translate");
 
     chrome.runtime.sendMessage(
         {
@@ -33,18 +36,13 @@ function translate(text) {
         showPanel
     );
 
+    document.removeEventListener("click", translate);
+    document.addEventListener("click", removePanel);
 
-}
+};
 
-function showPanel(responseText) {
 
-    console.log(responseText);
 
-    let panel = document.createElement("div");
-    panel.setAttribute("class", "qpt-panel");
-    panel.setAttribute("style", `top:${mouseY}px;left:${mouseX}px;`);
-    panel.innerHTML = responseText;
 
-    document.firstElementChild.appendChild(panel);
 
-}
+document.addEventListener("click", translate);
