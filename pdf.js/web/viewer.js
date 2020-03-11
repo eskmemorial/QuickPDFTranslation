@@ -1914,7 +1914,7 @@
 
           chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
-            if (message.type === "resultOfFetchWebPage") {
+            if (message.type === "fetchedPdf") {
 
               PDFViewerApplication.open(new Uint8Array(message.value.response));
             }
@@ -1922,7 +1922,7 @@
 
           chrome.runtime.sendMessage(
             {
-              type: "fetchWebPage",
+              type: "fetchPdf",
               value: file
             }
           );
