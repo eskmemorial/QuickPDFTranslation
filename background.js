@@ -2,7 +2,7 @@ chrome.runtime.onMessage.addListener(
     (message, sender, sendResponse) => {
 
         switch (message.type) {
-            case 'openPDFInViewer':
+            case "openPDFInViewer":
 
                 chrome.tabs.create({
                     windowId: sender.tab.windowId,
@@ -14,15 +14,15 @@ chrome.runtime.onMessage.addListener(
                 return true;
                 break;
 
-            case 'fetchWebPage':
+            case "fetchWebPage":
 
                 let request = new XMLHttpRequest();
-                request.addEventListener('load', event => {
+                request.addEventListener("load", event => {
 
                     chrome.tabs.sendMessage(tabs[0].id, { type: "resultOfFetchWebPage", value: request });
                 });
 
-                request.open('GET', file, false);
+                request.open("GET", file, false);
                 request.send();
 
                 return true;

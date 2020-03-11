@@ -1,4 +1,31 @@
-document.addEventListener('click', event => {
+document.addEventListener("click", event => {
 
-    console.log(document.getSelection().toString());
+    let text = document.getSelection().toString();
+
+    if (text === "") {
+        return;
+    }
+
+    translate(text);
+
 });
+
+
+
+function translate(text) {
+
+    chrome.runtime.sendMessage(
+        {
+            type: "fetchWebPage",
+            value: "file"
+        }
+    );
+
+
+}
+
+function showPannel(resultText) {
+
+
+
+}
