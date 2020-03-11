@@ -2,7 +2,7 @@
    "manifest_version": 2,
    "name": "QuickPDFTranslation",
    "version": "0.0.0",
-   "description": "You can translate selected text in PDF into Japanese.",
+   "description": "You can translate selected text in PDF into other language.",
    "homepage_url": "https://github.com/eskmemorial/QuickPDFTranslation",
    "icons": {
       "64": "icon64.png"
@@ -11,12 +11,10 @@
       "tabs"
    ],
    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-   "options_page": "options.html",
    "browser_action": {
       "default_icon": {
          "64": "icon64.png"
-      },
-      "default_popup": "popup.html"
+      }
    },
    "content_scripts": [
       {
