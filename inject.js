@@ -28,13 +28,24 @@ let translate = (clickEvent) => {
         return;
     }
 
-    chrome.runtime.sendMessage(
-        {
-            type: "translate",
-            value: `https://www.eskmemorial.jp/works/quickpdftranslation/translate?text=${text}`
-        },
-        showPanel
-    );
+
+    chrome.storage.sync.get(["translationServer", "toLang"], storage => {
+
+        let translationServer = storage.translationServer || "https://www.eskmemorial.jp/works/quickpdftranslation/translate";
+
+        let toLang = storage.toLang || "ja";
+
+        chrome.runtime.sendMessage(
+            {
+                type: "translate",
+                value: `${translationServer}?text=${encodeURI(text)}&to_lang=${encodeURI(toLang)}`
+            },
+            showPanel
+        );
+
+    });
+
+
 
     document.removeEventListener("click", translate);
     document.addEventListener("click", removePanel);
