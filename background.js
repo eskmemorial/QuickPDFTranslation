@@ -43,6 +43,12 @@ chrome.runtime.onMessage.addListener(
             request.send();
 
             return true;
+
+        } else if (message.type === "setIcon") {
+            chrome.browserAction.setIcon(message.value);
+
+            return true;
+
         }
 
 

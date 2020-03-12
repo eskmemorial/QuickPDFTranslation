@@ -53,7 +53,34 @@ let translate = (clickEvent) => {
 };
 
 
+chrome.storage.sync.get("enable", storage => {
+
+    if (storage.enable !== false) {
+        document.addEventListener("click", translate);
+    } else {
+        chrome.runtime.sendMessage(
+            {
+                type: "setIcon",
+                value: { path: "icon64_disabled.png" }
+            }
+        );
+    }
+});
 
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
-document.addEventListener("click", translate);
+    if (message.type === "extensionEnable") {
+
+        if (message.value) {
+
+            document.removeEventListener("click", removePanel);
+            document.addEventListener("click", translate);
+        } else {
+
+            document.removeEventListener("click", translate);
+            document.removeEventListener("click", removePanel);
+        }
+    }
+});
+
