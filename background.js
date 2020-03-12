@@ -9,15 +9,12 @@ chrome.runtime.onMessage.addListener(
             }
 
             chrome.tabs.create({
-                windowId: sender.tab.windowId,
-                //index: sender.tab.index,
-                openerTabId: sender.tab.id,
+                index: sender.tab.index,
                 url: `extension://${chrome.runtime.id}/pdf.js/web/viewer.html?file=${message.value.url}`
             });
 
-            chrome.tabs.remove({
-                tabIds: sender.tab.id,
-            });
+
+            chrome.tabs.remove(sender.tab.id);
 
             return true;
 
