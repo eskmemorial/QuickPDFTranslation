@@ -10,6 +10,15 @@
     </ol>
     <p>If selected text consists of more than 100 characters, this extension reject to work.</p>
 </div>
+<h2>About translation server</h2>
+<div>
+    <p>If you suspect that I secretly steal your personal information in my translation server, you have a good
+        choice to avoid outflowing your data. Build translation server by yourself. You can get sample script
+        of translation server from <a
+            href="https://github.com/eskmemorial/QuickPDFTranslation/blob/master/translation_server.php" target="_blank"
+            rel="noopener noreferrer">GitHub</a>.
+    </p>
+</div>
 <h2>License</h2>
 <div>
     <p>This software includes <a href="https://mozilla.github.io/pdf.js/">PDF.js</a>. That is distributed in the
