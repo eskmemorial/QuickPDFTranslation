@@ -29,16 +29,14 @@ let translate = (clickEvent) => {
     }
 
 
-    chrome.storage.sync.get(["translationServer", "toLang"], storage => {
-
-        let translationServer = storage.translationServer || "https://www.eskmemorial.jp/works/quickpdftranslation/translate";
+    chrome.storage.sync.get("toLang", storage => {
 
         let toLang = storage.toLang || "ja";
 
         chrome.runtime.sendMessage(
             {
                 type: "translate",
-                value: `${translationServer}?text=${encodeURI(text)}&to_lang=${encodeURI(toLang)}`
+                value: `https://www.eskmemorial.jp/works/quickpdftranslation/translate?text=${encodeURI(text)}&to_lang=${encodeURI(toLang)}`
             },
             showPanel
         );
