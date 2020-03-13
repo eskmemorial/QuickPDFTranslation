@@ -1,4 +1,4 @@
-let removePanel = () => {
+const removePanel = () => {
 
     document.querySelector("div.qpt-panel").remove();
 
@@ -7,10 +7,10 @@ let removePanel = () => {
 };
 
 
-let translate = (clickEvent) => {
+const translate = (clickEvent) => {
 
 
-    let showPanel = (responseText) => {
+    const showPanel = (responseText) => {
 
         let panel = document.createElement("div");
         panel.setAttribute("class", "qpt-panel");
@@ -22,7 +22,7 @@ let translate = (clickEvent) => {
 
 
 
-    let text = document.getSelection().toString();
+    const text = document.getSelection().toString();
 
     if (text === "") {
         return;
@@ -31,7 +31,7 @@ let translate = (clickEvent) => {
 
     chrome.storage.sync.get("toLang", storage => {
 
-        let toLang = storage.toLang || "ja";
+        const toLang = storage.toLang || "ja";
 
         chrome.runtime.sendMessage(
             {

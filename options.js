@@ -1,6 +1,6 @@
 chrome.storage.sync.get("toLang", storage => {
 
-    let toLang = storage.toLang || "ja";
+    const toLang = storage.toLang || "ja";
 
     document.querySelector(`option[value='${toLang}']`).setAttribute("selected", "");
 
