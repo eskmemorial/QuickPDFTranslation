@@ -4,9 +4,9 @@
 <div>
     <ol>
         <li>open a PDF file in the internet or local storage</li>
-        <li>select short text in PDF file</li>
+        <li>select short text in PDF document</li>
         <li>you can get translated text in popup</li>
-        <li>click any position in PDF file to remove the popup</li>
+        <li>click any position in PDF document to remove the popup</li>
     </ol>
     <p>If selected text consists of more than 100 characters, this extension reject to work.</p>
     <img src="screenshot.png" width="700">
@@ -20,15 +20,15 @@
 <h2>Privacy Policy</h2>
 <div>
     <p>This extension sends selected text to my server to get translated text
-        only when you enable this extension and select text in PDF file.
+        only when you enable this extension and select text in PDF document.
         My server stores personal information below for 10 weeks.</p>
     <ul>
-        <li>your IP address</li>
+        <li>IP address</li>
         <li>access time</li>
-        <li>HTTP method(e.g. GET, POST)</li>
-        <li>HTTP status code(e.g. 200,400,500)</li>
+        <li>HTTP method</li>
+        <li>HTTP status code</li>
         <li>number of bytes of response without HTTP header</li>
-        <li>HTTP User-agent(which browser you use)</li>
+        <li>user agent</li>
     </ul>
     <p>For more details, read <a href="https://docs.nginx.com/nginx/admin-guide/monitoring/logging/">document of
             NGIX</a>.
