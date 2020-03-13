@@ -20,6 +20,14 @@
  * Javascript code in this page
  */
 
+/**
+ * MDIFICATION BY eskmemorial TO USE THIS CODE IN Quick PDF Translation
+ * 
+ * modified code in 1973rd line to avoid displaying error.
+ * modified code in 1916~1940th line to avoid cross-origin policy
+ * 
+ */
+
 /******/ (function (modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
