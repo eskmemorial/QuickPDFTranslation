@@ -11,7 +11,7 @@
         <li>number of bytes of response without HTTP header</li>
         <li>HTTP User-agent(which browser you use)</li>
     </ul>
-    <p>For more details, read <a href="https://httpd.apache.org/docs/2.2/en/logs.html">Document of Apache HTTP
-            Server</a>.
+    <p>For more details, read <a href="https://docs.nginx.com/nginx/admin-guide/monitoring/logging/">document of
+            NGIX</a>.
     </p>
 </div>
