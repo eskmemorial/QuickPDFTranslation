@@ -1,5 +1,3 @@
-document.querySelector("#installed_extension").setAttribute("href", `edge://extensions/?id=${chrome.runtime.id}`);
-
 document.querySelector("#installed_extension").addEventListener("click", event => {
 
     chrome.runtime.sendMessage(
@@ -7,8 +5,6 @@ document.querySelector("#installed_extension").addEventListener("click", event =
             type: "openInstalledExtension"
         }
     );
-
-
 });
 
 
