@@ -18,6 +18,15 @@ chrome.runtime.onMessage.addListener(
 
             return true;
 
+        } else if (message.type === "openInstalledExtension") {
+
+            chrome.tabs.create({
+                index: sender.tab.index + 1,
+                url: `edge://extensions/?id=${chrome.runtime.id}`
+            });
+
+            return true;
+
         } else if (message.type === "fetchPdf") {
 
             let request = new XMLHttpRequest();
@@ -48,11 +57,7 @@ chrome.runtime.onMessage.addListener(
             chrome.browserAction.setIcon(message.value);
 
             return true;
-
         }
-
-
-
     }
 );
 
