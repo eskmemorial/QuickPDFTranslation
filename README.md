@@ -1,5 +1,5 @@
 <h1>Quick PDF Translation</h1>
-<p>You can translate selected text in PDF into other language.</p>
+<p>You can translate selected text in PDF document into other language.</p>
 <h2>Usage</h2>
 <div>
     <ol>
