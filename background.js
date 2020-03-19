@@ -18,7 +18,7 @@ chrome.runtime.onMessage.addListener(
 
             return true;
 
-        } else if (message.type === "openInstalledExtension") {
+        } else if (message.type === "openInstalledExtensions") {
 
             chrome.tabs.create({
                 index: sender.tab.index + 1,

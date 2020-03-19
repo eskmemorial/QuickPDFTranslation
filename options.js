@@ -1,8 +1,8 @@
-document.querySelector("#installed_extension").addEventListener("click", event => {
+document.querySelector("#installed_extensions").addEventListener("click", event => {
 
     chrome.runtime.sendMessage(
         {
-            type: "openInstalledExtension"
+            type: "openInstalledExtensions"
         }
     );
 });
