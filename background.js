@@ -8,13 +8,9 @@ chrome.runtime.onMessage.addListener(
                 message.value.url = message.value.url.substring("file:///".length, message.value.url.length);
             }
 
-            chrome.tabs.create({
-                index: sender.tab.index,
+            chrome.tabs.update({
                 url: `extension://${chrome.runtime.id}/pdf.js/web/viewer.html?file=${message.value.url}`
             });
-
-
-            chrome.tabs.remove(sender.tab.id);
 
             return true;
 
