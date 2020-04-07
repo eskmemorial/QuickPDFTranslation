@@ -1,13 +1,3 @@
-document.querySelector("#installed_extensions").addEventListener("click", event => {
-
-    chrome.runtime.sendMessage(
-        {
-            type: "openInstalledExtensions"
-        }
-    );
-});
-
-
 chrome.storage.sync.get("toLang", storage => {
 
     const toLang = storage.toLang || "ja";

@@ -1,6 +1,20 @@
+chrome.extension.isAllowedFileSchemeAccess(isAllowedAccess => {
+
+    if (!isAllowedAccess) {
+
+        chrome.webNavigation.onBeforeNavigate.addListener(function (details) {
+            if (details.url.startsWith("file:///")) {
+                chrome.tabs.update(details.tabId, {
+                    url: `extension://${chrome.runtime.id}/open_extensions_page.html`
+                });
+            }
+        });
+    }
+});
+
+
 chrome.runtime.onMessage.addListener(
     (message, sender, sendResponse) => {
-
 
         if (message.type === "openPDFInViewer") {
 
@@ -14,7 +28,7 @@ chrome.runtime.onMessage.addListener(
 
             return true;
 
-        } else if (message.type === "openInstalledExtensions") {
+        } else if (message.type === "openExtensionsPage") {
 
             chrome.tabs.create({
                 index: sender.tab.index + 1,
