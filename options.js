@@ -13,7 +13,5 @@ document.querySelector("#save").addEventListener("click", event => {
 
     chrome.storage.sync.set({
         toLang: toLang
-    });
-
-    alert("Saved!");
+    }, () => { alert("Saved!"); });
 });

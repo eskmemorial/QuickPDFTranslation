@@ -1790,7 +1790,7 @@
             protocol = _ref8.protocol;
 
           if (origin !== viewerOrigin && protocol !== 'blob:') {
-            //throw new Error('file origin does not match viewer\'s');
+            // throw new Error('file origin does not match viewer\'s');
           }
         } catch (ex) {
           var message = ex && ex.message;
@@ -1922,7 +1922,7 @@
 
           chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
-            if (message.type === "fetchedPdf") {
+            if (message.type === "downloadedPdf") {
 
               PDFViewerApplication.open(new Uint8Array(message.value.response));
             }
@@ -1930,7 +1930,7 @@
 
           chrome.runtime.sendMessage(
             {
-              type: "fetchPdf",
+              type: "downloadPdf",
               value: file
             }
           );

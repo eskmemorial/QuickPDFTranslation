@@ -51,9 +51,9 @@ const translate = (clickEvent) => {
 };
 
 
-chrome.storage.sync.get("enable", storage => {
+chrome.storage.sync.get("isEnabled", storage => {
 
-    if (storage.enable !== false) {
+    if (storage.isEnabled !== false) {
         document.addEventListener("click", translate);
     } else {
         chrome.runtime.sendMessage(
@@ -68,7 +68,7 @@ chrome.storage.sync.get("enable", storage => {
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
-    if (message.type === "extensionEnable") {
+    if (message.type === "extensionEnabled") {
 
         if (message.value) {
 

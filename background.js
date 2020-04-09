@@ -2,9 +2,9 @@ chrome.webNavigation.onBeforeNavigate.addListener(details => {
 
     if (details.url.endsWith(".pdf")) {
 
-        chrome.storage.sync.get("enable", storage => {
+        chrome.storage.sync.get("isEnabled", storage => {
 
-            if (storage.enable !== false) {
+            if (storage.isEnabled !== false) {
 
                 if (details.url.startsWith("file:///")) {
 
@@ -12,7 +12,7 @@ chrome.webNavigation.onBeforeNavigate.addListener(details => {
 
                         if (!isAllowedAccess) {
                             chrome.tabs.update(details.tabId, {
-                                url: `extension://${chrome.runtime.id}/open_extensions_page.html`
+                                url: chrome.runtime.getURL("/open_extensions_page.html")
                             });
                         }
                     });
@@ -21,22 +21,19 @@ chrome.webNavigation.onBeforeNavigate.addListener(details => {
 
 
 
-                if (details.url.startsWith("file:///")) {
-                    details.url = details.url.substring("file:///".length, details.url.length);
+
+                let url = details.url;
+
+                if (url.startsWith("file:///")) {
+                    url = url.substring("file:///".length, url.length);
                 }
 
                 chrome.tabs.update({
-                    url: `extension://${chrome.runtime.id}/pdf.js/web/viewer.html?file=${details.url}`
+                    url: chrome.runtime.getURL(`/pdf.js/web/viewer.html?file=${url}`)
                 });
-
-
-
-
             }
         });
-
     }
-
 });
 
 
@@ -45,33 +42,12 @@ chrome.webNavigation.onBeforeNavigate.addListener(details => {
 chrome.runtime.onMessage.addListener(
     (message, sender, sendResponse) => {
 
-        if (message.type === "openPDFInViewer") {
-
-            if (message.value.url.startsWith("file:///")) {
-                message.value.url = message.value.url.substring("file:///".length, message.value.url.length);
-            }
-
-            chrome.tabs.update({
-                url: `extension://${chrome.runtime.id}/pdf.js/web/viewer.html?file=${message.value.url}`
-            });
-
-            return true;
-
-        } else if (message.type === "openExtensionsPage") {
-
-            chrome.tabs.create({
-                index: sender.tab.index + 1,
-                url: `edge://extensions/?id=${chrome.runtime.id}`
-            });
-
-            return true;
-
-        } else if (message.type === "fetchPdf") {
+        if (message.type === "downloadPdf") {
 
             let request = new XMLHttpRequest();
             request.addEventListener("load", event => {
 
-                chrome.tabs.sendMessage(tabs[0].id, { type: "fetchedPdf", value: request });
+                chrome.tabs.sendMessage(tabs[0].id, { type: "downloadedPdf", value: request });
             });
 
             request.open("GET", message.value, false);

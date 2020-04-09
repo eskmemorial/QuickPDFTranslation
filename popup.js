@@ -1,6 +1,6 @@
-chrome.storage.sync.get("enable", storage => {
+chrome.storage.sync.get("isEnabled", storage => {
 
-    if (storage.enable !== false) {
+    if (storage.isEnabled !== false) {
         enableExtension();
     } else {
         disableExtension();
@@ -21,7 +21,7 @@ document.querySelector("#open_options").addEventListener("click", event => {
 
 function enableExtension() {
 
-    chrome.storage.sync.set({ enable: true }, () => {
+    chrome.storage.sync.set({ isEnabled: true }, () => {
         document.querySelector("#enable").setAttribute("style", "display:none;");
         document.querySelector("#disable").setAttribute("style", "display:inline-block;");
 
@@ -33,7 +33,7 @@ function enableExtension() {
         );
 
         chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-            chrome.tabs.sendMessage(tabs[0].id, { type: "extensionEnable", value: true });
+            chrome.tabs.sendMessage(tabs[0].id, { type: "extensionEnabled", value: true });
         });
     });
 }
@@ -41,7 +41,7 @@ function enableExtension() {
 
 function disableExtension() {
 
-    chrome.storage.sync.set({ enable: false }, () => {
+    chrome.storage.sync.set({ isEnabled: false }, () => {
         document.querySelector("#disable").setAttribute("style", "display:none;");
         document.querySelector("#enable").setAttribute("style", "display:inline-block;");
 
@@ -54,7 +54,7 @@ function disableExtension() {
 
         chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
 
-            chrome.tabs.sendMessage(tabs[0].id, { type: "extensionEnable", value: false });
+            chrome.tabs.sendMessage(tabs[0].id, { type: "extensionEnabled", value: false });
         });
     });
 }
