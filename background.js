@@ -42,7 +42,15 @@ chrome.webNavigation.onBeforeNavigate.addListener(details => {
 chrome.runtime.onMessage.addListener(
     (message, sender, sendResponse) => {
 
-        if (message.type === "downloadPdf") {
+        if (message.type === "openExtensionsPage") {
+
+            chrome.tabs.update({
+                url: `edge://extensions/?id=${chrome.runtime.id}`
+            });
+
+            return true;
+
+        } else if (message.type === "downloadPdf") {
 
             let request = new XMLHttpRequest();
             request.addEventListener("load", event => {
