@@ -1,12 +1,12 @@
-chrome.storage.sync.get("enable", storage => {
+// chrome.storage.sync.get("enable", storage => {
 
-    if (storage.enable !== false) {
+//     if (storage.enable !== false) {
 
-        chrome.runtime.sendMessage(
-            {
-                type: "openPDFInViewer",
-                value: { url: window.location.href }
-            }
-        );
-    }
-});
+//         chrome.runtime.sendMessage(
+//             {
+//                 type: "openPDFInViewer",
+//                 value: { url: window.location.href }
+//             }
+//         );
+//     }
+// });

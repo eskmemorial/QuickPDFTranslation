@@ -1,16 +1,45 @@
-chrome.extension.isAllowedFileSchemeAccess(isAllowedAccess => {
+chrome.webNavigation.onBeforeNavigate.addListener(details => {
 
-    if (!isAllowedAccess) {
+    if (details.url.endsWith(".pdf")) {
 
-        chrome.webNavigation.onBeforeNavigate.addListener(function (details) {
-            if (details.url.startsWith("file:///")) {
-                chrome.tabs.update(details.tabId, {
-                    url: `extension://${chrome.runtime.id}/open_extensions_page.html`
+        chrome.storage.sync.get("enable", storage => {
+
+            if (storage.enable !== false) {
+
+                if (details.url.startsWith("file:///")) {
+
+                    chrome.extension.isAllowedFileSchemeAccess(isAllowedAccess => {
+
+                        if (!isAllowedAccess) {
+                            chrome.tabs.update(details.tabId, {
+                                url: `extension://${chrome.runtime.id}/open_extensions_page.html`
+                            });
+                        }
+                    });
+                }
+
+
+
+
+                if (details.url.startsWith("file:///")) {
+                    details.url = details.url.substring("file:///".length, details.url.length);
+                }
+
+                chrome.tabs.update({
+                    url: `extension://${chrome.runtime.id}/pdf.js/web/viewer.html?file=${details.url}`
                 });
+
+
+
+
             }
         });
+
     }
+
 });
+
+
 
 
 chrome.runtime.onMessage.addListener(
