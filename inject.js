@@ -33,14 +33,15 @@ const translate = (clickEvent) => {
 
         const toLang = storage.toLang || "ja";
 
-        chrome.runtime.sendMessage(
-            {
-                type: "translate",
-                value: `https://www.eskmemorial.jp/works/quickpdftranslation/translate?text=${encodeURI(text)}&to_lang=${encodeURI(toLang)}`
-            },
-            showPanel
-        );
 
+        let request = new XMLHttpRequest();
+        request.addEventListener("load", event => {
+
+            showPanel(request.responseText);
+        });
+
+        request.open("GET", `https://www.eskmemorial.jp/works/quickpdftranslation/translate?text=${encodeURI(text)}&to_lang=${encodeURI(toLang)}`, true);
+        request.send();
     });
 
 

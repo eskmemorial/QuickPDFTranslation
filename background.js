@@ -50,32 +50,6 @@ chrome.runtime.onMessage.addListener(
 
             return true;
 
-        } else if (message.type === "downloadPdf") {
-
-            let request = new XMLHttpRequest();
-            request.addEventListener("load", event => {
-
-                chrome.tabs.sendMessage(tabs[0].id, { type: "downloadedPdf", value: request });
-            });
-
-            request.open("GET", message.value, false);
-            request.send();
-
-            return true;
-
-        } else if (message.type === "translate") {
-
-            let request = new XMLHttpRequest();
-            request.addEventListener("load", event => {
-
-                sendResponse(request.responseText);
-            });
-
-            request.open("GET", message.value, false);
-            request.send();
-
-            return true;
-
         } else if (message.type === "setIcon") {
             chrome.browserAction.setIcon(message.value);
 
