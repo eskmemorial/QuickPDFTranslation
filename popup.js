@@ -8,15 +8,34 @@ chrome.storage.sync.get("isEnabled", storage => {
 });
 
 
+chrome.storage.sync.get("toLang", storage => {
+
+    const toLang = storage.toLang || "en";
+
+    document.querySelector(`option[value='${toLang}']`).setAttribute("selected", "");
+
+});
+
+document.querySelector("select").addEventListener("change", event => {
+
+    chrome.storage.sync.set({
+        toLang: event.target.value
+    }, () => { });
+
+});
+
+
 document.querySelector("#enable").addEventListener("click", enableExtension);
 
-
 document.querySelector("#disable").addEventListener("click", disableExtension);
-
 
 document.querySelector("#open_options").addEventListener("click", event => {
     window.open("options.html");
 });
+
+
+
+
 
 
 function enableExtension() {
@@ -58,3 +77,4 @@ function disableExtension() {
         });
     });
 }
+

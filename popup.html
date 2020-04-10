@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+<meta charset="utf-8">
 
 <head>
     <title>Popup@Quick PDF Translation</title>
@@ -7,8 +8,20 @@
         button {
             font-size: 15px;
             margin: 2.5px;
-            width: 80px;
+            width: 120px;
             height: 30px;
+        }
+
+        label {
+            display: block;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        select {
+            font-size: 16.5px;
+            width: 120px;
+            margin: 2.5px;
         }
     </style>
 </head>
@@ -16,7 +29,18 @@
 <body>
     <button id="enable">Enable</button>
     <button id="disable">Disable</button>
-    <button id="open_options">Settings</button>
+    <button id="open_options">Usage</button>
+    <select name="toLang">
+        <option value="en">English</option>
+        <option value="ja">日本語</option>
+        <option value="de">Deutsch</option>
+        <option value="fr">Français</option>
+        <option value="it">Italiano</option>
+        <option value="es">Español</option>
+        <option value="ru">Русский язык</option>
+        <option value="zh-Hans">中文</option>
+        <option value="ko">한국어</option>
+    </select>
     <script src="popup.js"></script>
 </body>
 

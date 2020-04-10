@@ -1,7 +1,7 @@
 {
    "manifest_version": 2,
    "name": "Quick PDF Translation",
-   "version": "1.4.1",
+   "version": "1.5.0",
    "description": "You can translate selected text in PDF document into other language.",
    "homepage_url": "https://github.com/eskmemorial/QuickPDFTranslation",
    "icons": {
