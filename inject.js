@@ -24,7 +24,7 @@ const translate = (clickEvent) => {
 
     const text = document.getSelection().toString();
 
-    if (text === "") {
+    if (text === "" || text.length > 1024) {
         return;
     }
 
