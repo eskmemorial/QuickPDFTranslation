@@ -28,9 +28,9 @@ const translate = (clickEvent) => {
         return;
     }
 
-    chrome.storage.sync.get("toLang", storage => {
+    chrome.storage.sync.get("intoLang", storage => {
 
-        const toLang = storage.toLang || "ja";
+        const intoLang = storage.intoLang || "ja";
 
         let request = new XMLHttpRequest();
         request.addEventListener("load", event => {
@@ -40,7 +40,7 @@ const translate = (clickEvent) => {
 
         request.open("POST", "https://www.eskmemorial.jp/works/quickpdftranslation/translate", true);
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        request.send(`text=${encodeURI(text)}&to_lang=${encodeURI(toLang)}`);
+        request.send(`text=${encodeURI(text)}&into_lang=${encodeURI(intoLang)}`);
     });
 
     document.removeEventListener("click", translate);

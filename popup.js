@@ -8,18 +8,18 @@ chrome.storage.sync.get("isEnabled", storage => {
 });
 
 
-chrome.storage.sync.get("toLang", storage => {
+chrome.storage.sync.get("intoLang", storage => {
 
-    const toLang = storage.toLang || "en";
+    const intoLang = storage.intoLang || "en";
 
-    document.querySelector(`option[value='${toLang}']`).setAttribute("selected", "");
+    document.querySelector(`option[value='${intoLang}']`).setAttribute("selected", "");
 
 });
 
 document.querySelector("select").addEventListener("change", event => {
 
     chrome.storage.sync.set({
-        toLang: event.target.value
+        intoLang: event.target.value
     }, () => { });
 
 });
