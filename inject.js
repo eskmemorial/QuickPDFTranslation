@@ -24,15 +24,13 @@ const translate = (clickEvent) => {
 
     const text = document.getSelection().toString();
 
-    if (text === "" || text.length > 1024) {
+    if (text.length < 2) {
         return;
     }
-
 
     chrome.storage.sync.get("toLang", storage => {
 
         const toLang = storage.toLang || "ja";
-
 
         let request = new XMLHttpRequest();
         request.addEventListener("load", event => {
@@ -40,15 +38,13 @@ const translate = (clickEvent) => {
             showPanel(request.responseText);
         });
 
-        request.open("GET", `https://www.eskmemorial.jp/works/quickpdftranslation/translate?text=${encodeURI(text)}&to_lang=${encodeURI(toLang)}`, true);
-        request.send();
+        request.open("POST", "https://www.eskmemorial.jp/works/quickpdftranslation/translate", true);
+        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        request.send(`text=${encodeURI(text)}&to_lang=${encodeURI(toLang)}`);
     });
-
-
 
     document.removeEventListener("click", translate);
     document.addEventListener("click", removePanel);
-
 };
 
 
