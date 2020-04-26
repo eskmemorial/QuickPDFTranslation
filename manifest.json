@@ -26,9 +26,9 @@
             "contentscript.js"
          ],
          "matches": [
-            "http://*/*.pdf",
-            "https://*/*.pdf",
-            "file://*/*.pdf"
+            "http://*/*",
+            "https://*/*",
+            "file://*/*"
          ],
          "run_at": "document_start"
       }
