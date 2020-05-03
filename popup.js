@@ -20,7 +20,7 @@ document.querySelector("select").addEventListener("change", event => {
 
     chrome.storage.sync.set({
         intoLang: event.target.value
-    }, () => { });
+    });
 
 });
 
@@ -52,7 +52,9 @@ function enableExtension() {
         );
 
         chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-            chrome.tabs.sendMessage(tabs[0].id, { type: "extensionEnabled", value: true });
+            tabs.forEach(tabs => {
+                chrome.tabs.sendMessage(tab.id, { type: "extensionEnabled", value: true });
+            });
         });
     });
 }
@@ -72,8 +74,9 @@ function disableExtension() {
         );
 
         chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-
-            chrome.tabs.sendMessage(tabs[0].id, { type: "extensionEnabled", value: false });
+            tabs.forEach(tab => {
+                chrome.tabs.sendMessage(tab.id, { type: "extensionEnabled", value: false });
+            });
         });
     });
 }
