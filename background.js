@@ -42,18 +42,15 @@ chrome.webNavigation.onBeforeNavigate.addListener(details => {
 chrome.runtime.onMessage.addListener(
     (message, sender, sendResponse) => {
 
-        if (message.type === "openExtensionsPage") {
-
-            chrome.tabs.update({
-                url: `edge://extensions/?id=${chrome.runtime.id}`
-            });
-
-            return true;
-
-        } else if (message.type === "setIcon") {
-            chrome.browserAction.setIcon(message.value);
-
-            return true;
+        switch (message.type) {
+            case "openExtensionsPage":
+                chrome.tabs.update({
+                    url: `edge://extensions/?id=${chrome.runtime.id}`
+                });
+                break;
+            case "setIcon":
+                chrome.browserAction.setIcon(message.value);
+                break;
         }
     }
 );
