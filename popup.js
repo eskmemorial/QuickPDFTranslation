@@ -10,7 +10,7 @@ chrome.storage.sync.get("isEnabled", storage => {
 
 chrome.storage.sync.get("intoLang", storage => {
 
-    const intoLang = storage.intoLang || "en";
+    const intoLang = storage.intoLang || "ja";
 
     document.querySelector(`option[value='${intoLang}']`).setAttribute("selected", "");
 
